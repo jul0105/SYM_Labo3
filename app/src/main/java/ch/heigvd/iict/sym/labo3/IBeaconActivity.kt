@@ -8,6 +8,7 @@
 package ch.heigvd.iict.sym.labo3
 
 import android.Manifest
+import android.content.ServiceConnection
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.RemoteException
@@ -27,6 +28,7 @@ private const val SCAN_INTERVAL: Long = 1000
 // Log's tag
 private val TAG: String = IBeaconActivity::class.simpleName.toString()
 
+
 class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
 
     private lateinit var beaconManager: BeaconManager
@@ -40,15 +42,34 @@ class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
         }
 
-        // Initialize and setup BeaconManager
+        // Initialize BeaconManager
         beaconManager = BeaconManager.getInstanceForApplication(this)
         beaconManager.beaconParsers.add(BeaconParser().setBeaconLayout(BEACON_FORMAT))
-        beaconManager.bind(this)
 
         // Set scan interval
         beaconManager.foregroundBetweenScanPeriod = SCAN_INTERVAL
         beaconManager.updateScanPeriods()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        beaconManager.bind(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        beaconManager.unbind(this)
+    }
+
+    override fun unbindService(conn: ServiceConnection) {
+        super.unbindService(conn)
+
+        // Stop scanning
+        try {
+            beaconManager.stopRangingBeaconsInRegion(Region("myRangingUniqueId", null, null, null))
+        } catch (e: RemoteException) {
+            Log.e(TAG, e.stackTrace.toString())
+        }
     }
 
     override fun onBeaconServiceConnect() {
