@@ -7,12 +7,71 @@
 
 package ch.heigvd.iict.sym.labo3
 
-import androidx.appcompat.app.AppCompatActivity
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.os.RemoteException
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import org.altbeacon.beacon.BeaconConsumer
+import org.altbeacon.beacon.BeaconManager
+import org.altbeacon.beacon.BeaconParser
+import org.altbeacon.beacon.Region
 
-class IBeaconActivity : AppCompatActivity() {
+
+private const val BEACON_FORMAT: String = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"
+private const val SCAN_INTERVAL: Long = 1000
+
+// Log's tag
+private val TAG: String = IBeaconActivity::class.simpleName.toString()
+
+class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
+
+    private lateinit var beaconManager: BeaconManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_i_beacon)
+
+        // Check permissions
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+        }
+
+        // Initialize and setup BeaconManager
+        beaconManager = BeaconManager.getInstanceForApplication(this)
+        beaconManager.beaconParsers.add(BeaconParser().setBeaconLayout(BEACON_FORMAT))
+        beaconManager.bind(this)
+
+        // Set scan interval
+        beaconManager.foregroundBetweenScanPeriod = SCAN_INTERVAL
+        beaconManager.updateScanPeriods()
+
+    }
+
+    override fun onBeaconServiceConnect() {
+        beaconManager.removeAllRangeNotifiers()
+        beaconManager.addRangeNotifier { beacons, region ->
+            if (beacons.isNotEmpty()) {
+
+                for (beacon in beacons) {
+                    Log.d(TAG, "UUID: " + beacon.id1
+                            + ", Major: " + beacon.id2
+                            + ", Minor: " + beacon.id3
+                            + ", RSSI: " + beacon.rssi
+                            + ", Dist: " + beacon.distance
+                    )
+                }
+
+            }
+        }
+
+        try {
+            beaconManager.startRangingBeaconsInRegion(Region("myRangingUniqueId", null, null, null))
+        } catch (e: RemoteException) {
+            Log.e(TAG, e.stackTrace.toString())
+        }
     }
 }
