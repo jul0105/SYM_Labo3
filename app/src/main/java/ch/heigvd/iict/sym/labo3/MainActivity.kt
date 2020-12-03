@@ -17,17 +17,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnIBeacon.setOnClickListener {
+        btn_ibeacon.setOnClickListener {
             val intent = Intent(this@MainActivity, IBeaconActivity::class.java)
             startActivity(intent)
         }
 
-        btnNfc.setOnClickListener {
+        btn_nfc.setOnClickListener {
             val intent = Intent(this@MainActivity, NfcActivity::class.java)
             startActivity(intent)
         }
 
-        btnBarCode.setOnClickListener {
+        btn_barcode.setOnClickListener {
             val intent = Intent(this@MainActivity, BarCodeActivity::class.java)
             startActivity(intent)
         }
