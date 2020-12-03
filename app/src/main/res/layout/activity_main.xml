@@ -7,7 +7,7 @@
         tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/btnIBeacon"
+        android:id="@+id/btn_ibeacon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="258dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnNfc"
+        android:id="@+id/btn_nfc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -26,10 +26,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnIBeacon" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_ibeacon" />
 
     <Button
-        android:id="@+id/btnBarCode"
+        android:id="@+id/btn_barcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
@@ -38,5 +38,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnNfc" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_nfc" />
 </androidx.constraintlayout.widget.ConstraintLayout>
