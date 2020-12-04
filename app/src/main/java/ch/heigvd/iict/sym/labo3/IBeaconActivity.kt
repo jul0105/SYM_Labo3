@@ -33,6 +33,7 @@ private val TAG: String = IBeaconActivity::class.simpleName.toString()
 class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
 
     private lateinit var beaconManager: BeaconManager
+    private lateinit var beaconAdapter: IBeaconAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +55,9 @@ class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
         // Lookup the recyclerview in activity layout
         val recyclerView: RecyclerView = findViewById(R.id.ibeacon_recycler_view)
         // Create adapter passing in the sample user data
-        val adapter = IBeaconAdapter()
+        beaconAdapter = IBeaconAdapter()
         // Attach the adapter to the recyclerview to populate items
-        recyclerView.adapter = adapter
+        recyclerView.adapter = beaconAdapter
         // Set layout manager to position the items
         recyclerView.layoutManager = LinearLayoutManager(this)
         // That's all!
@@ -86,16 +87,19 @@ class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
     override fun onBeaconServiceConnect() {
         beaconManager.removeAllRangeNotifiers()
         beaconManager.addRangeNotifier { beacons, region ->
-            if (beacons.isNotEmpty()) {
 
-                for (beacon in beacons) {
-                    Log.d(TAG, "UUID: " + beacon.id1
-                            + ", Major: " + beacon.id2
-                            + ", Minor: " + beacon.id3
-                            + ", RSSI: " + beacon.rssi
-                            + ", Dist: " + beacon.distance
-                    )
-                }
+            // Update RecyclerView UI
+            beaconAdapter.setBeacons(beacons)
+            beaconAdapter.notifyDataSetChanged()
+
+            // Log
+            for (beacon in beacons) {
+                Log.d(TAG, "UUID: " + beacon.id1
+                        + ", Major: " + beacon.id2
+                        + ", Minor: " + beacon.id3
+                        + ", RSSI: " + beacon.rssi
+                        + ", Dist: " + beacon.distance
+                )
 
             }
         }

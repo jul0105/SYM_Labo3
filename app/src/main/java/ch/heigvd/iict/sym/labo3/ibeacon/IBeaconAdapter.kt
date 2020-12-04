@@ -6,10 +6,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ch.heigvd.iict.sym.labo3.R
+import org.altbeacon.beacon.Beacon
 
 class IBeaconAdapter : RecyclerView.Adapter<IBeaconAdapter.ViewHolder>() {
 
-    private val iBeacons: List<IBeacon> = ArrayList()
+    private var beacons: List<Beacon> = ArrayList()
+
+    fun setBeacons(value: Collection<Beacon>) {
+        beacons = value.toList()
+    }
 
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
@@ -36,16 +41,16 @@ class IBeaconAdapter : RecyclerView.Adapter<IBeaconAdapter.ViewHolder>() {
     // Involves populating data into the item through holder
     override fun onBindViewHolder(viewHolder: IBeaconAdapter.ViewHolder, position: Int) {
         // Get the data model based on position
-        val iBeacon: IBeacon = iBeacons[position]
+        val beacon: Beacon = beacons[position]
         // Set item views based on your views and data model
-        viewHolder.uuid.text = iBeacon.uuid
-        viewHolder.major.text = iBeacon.major
-        viewHolder.minor.text = iBeacon.minor
-        viewHolder.rssi.text = iBeacon.rssi
+        viewHolder.uuid.text = beacon.id1.toString()
+        viewHolder.major.text = beacon.id2.toString()
+        viewHolder.minor.text = beacon.id3.toString()
+        viewHolder.rssi.text = beacon.rssi.toString()
     }
 
     // Returns the total count of items in the list
     override fun getItemCount(): Int {
-        return iBeacons.size
+        return beacons.size
     }
 }
