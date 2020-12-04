@@ -3,4 +3,8 @@
     <string name="ibeacon">iBeacon</string>
     <string name="nfc">NFC</string>
     <string name="barcode">Code-barre</string>
+    <string name="uuid_label">UUID:</string>
+    <string name="major_label">Major:</string>
+    <string name="minor_label">Minor:</string>
+    <string name="rssi_label">RSSI:</string>
 </resources>
