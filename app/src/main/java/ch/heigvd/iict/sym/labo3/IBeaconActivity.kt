@@ -16,6 +16,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import ch.heigvd.iict.sym.labo3.ibeacon.IBeaconAdapter
 import org.altbeacon.beacon.BeaconConsumer
 import org.altbeacon.beacon.BeaconManager
 import org.altbeacon.beacon.BeaconParser
@@ -24,10 +27,8 @@ import org.altbeacon.beacon.Region
 
 private const val BEACON_FORMAT: String = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"
 private const val SCAN_INTERVAL: Long = 1000
-
 // Log's tag
 private val TAG: String = IBeaconActivity::class.simpleName.toString()
-
 
 class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
 
@@ -49,6 +50,16 @@ class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
         // Set scan interval
         beaconManager.foregroundBetweenScanPeriod = SCAN_INTERVAL
         beaconManager.updateScanPeriods()
+
+        // Lookup the recyclerview in activity layout
+        val recyclerView: RecyclerView = findViewById(R.id.ibeacon_recycler_view)
+        // Create adapter passing in the sample user data
+        val adapter = IBeaconAdapter()
+        // Attach the adapter to the recyclerview to populate items
+        recyclerView.adapter = adapter
+        // Set layout manager to position the items
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        // That's all!
     }
 
     override fun onResume() {
