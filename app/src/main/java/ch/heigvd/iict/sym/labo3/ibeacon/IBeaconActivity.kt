@@ -5,7 +5,7 @@
  * Classe : B
  */
 
-package ch.heigvd.iict.sym.labo3
+package ch.heigvd.iict.sym.labo3.ibeacon
 
 import android.Manifest
 import android.content.ServiceConnection
@@ -18,7 +18,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ch.heigvd.iict.sym.labo3.ibeacon.IBeaconAdapter
+import ch.heigvd.iict.sym.labo3.R
 import org.altbeacon.beacon.BeaconConsumer
 import org.altbeacon.beacon.BeaconManager
 import org.altbeacon.beacon.BeaconParser
@@ -27,7 +27,6 @@ import org.altbeacon.beacon.Region
 
 private const val BEACON_FORMAT: String = "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"
 private const val SCAN_INTERVAL: Long = 1000
-// Log's tag
 private val TAG: String = IBeaconActivity::class.simpleName.toString()
 
 class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
@@ -49,18 +48,18 @@ class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
         beaconManager.beaconParsers.add(BeaconParser().setBeaconLayout(BEACON_FORMAT))
 
         // Set scan interval
-        beaconManager.foregroundBetweenScanPeriod = SCAN_INTERVAL
+        beaconManager.foregroundBetweenScanPeriod =
+            SCAN_INTERVAL
         beaconManager.updateScanPeriods()
 
         // Lookup the recyclerview in activity layout
         val recyclerView: RecyclerView = findViewById(R.id.ibeacon_recycler_view)
-        // Create adapter passing in the sample user data
+        // Create adapter
         beaconAdapter = IBeaconAdapter()
         // Attach the adapter to the recyclerview to populate items
         recyclerView.adapter = beaconAdapter
         // Set layout manager to position the items
         recyclerView.layoutManager = LinearLayoutManager(this)
-        // That's all!
     }
 
     override fun onResume() {
@@ -94,11 +93,12 @@ class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
 
             // Log
             for (beacon in beacons) {
-                Log.d(TAG, "UUID: " + beacon.id1
-                        + ", Major: " + beacon.id2
-                        + ", Minor: " + beacon.id3
-                        + ", RSSI: " + beacon.rssi
-                        + ", Dist: " + beacon.distance
+                Log.d(
+                    TAG, "UUID: " + beacon.id1
+                            + ", Major: " + beacon.id2
+                            + ", Minor: " + beacon.id3
+                            + ", RSSI: "  + beacon.rssi
+                            + ", Dist: "  + beacon.distance
                 )
 
             }

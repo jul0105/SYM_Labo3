@@ -10,6 +10,7 @@ package ch.heigvd.iict.sym.labo3
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ch.heigvd.iict.sym.labo3.ibeacon.IBeaconActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

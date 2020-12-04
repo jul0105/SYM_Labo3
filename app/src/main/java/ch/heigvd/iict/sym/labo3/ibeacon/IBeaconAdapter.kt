@@ -10,25 +10,26 @@ import org.altbeacon.beacon.Beacon
 
 class IBeaconAdapter : RecyclerView.Adapter<IBeaconAdapter.ViewHolder>() {
 
+    /**
+     * View's item
+     */
     private var beacons: List<Beacon> = ArrayList()
 
-    fun setBeacons(value: Collection<Beacon>) {
-        beacons = value.toList()
-    }
-
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
+    /**
+     * Provide a direct reference to each of the views within a data item
+     * Used to cache the views within the item layout for fast access
+     */
     inner class ViewHolder(listItemView: View) : RecyclerView.ViewHolder(listItemView) {
-        // Your holder should contain and initialize a member variable
-        // for any view that will be set as you render a row
+        // Any view that will be set while rendering row
         val uuid: TextView = itemView.findViewById(R.id.uuid_content)
         val major: TextView = itemView.findViewById(R.id.major_content)
         val minor: TextView = itemView.findViewById(R.id.minor_content)
         val rssi: TextView = itemView.findViewById(R.id.rssi_content)
     }
 
-    // ... constructor and member variables
-    // Usually involves inflating a layout from XML and returning the holder
+    /**
+     * Inflating a layout from XML and returning the holder
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IBeaconAdapter.ViewHolder {
         val context = parent.context
         val inflater = LayoutInflater.from(context)
@@ -38,19 +39,30 @@ class IBeaconAdapter : RecyclerView.Adapter<IBeaconAdapter.ViewHolder>() {
         return ViewHolder(contactView)
     }
 
-    // Involves populating data into the item through holder
+    /**
+     * Populating data into the item through holder
+     */
     override fun onBindViewHolder(viewHolder: IBeaconAdapter.ViewHolder, position: Int) {
         // Get the data model based on position
         val beacon: Beacon = beacons[position]
-        // Set item views based on your views and data model
+        // Set item views based on views and data model
         viewHolder.uuid.text = beacon.id1.toString()
         viewHolder.major.text = beacon.id2.toString()
         viewHolder.minor.text = beacon.id3.toString()
         viewHolder.rssi.text = beacon.rssi.toString()
     }
 
-    // Returns the total count of items in the list
+    /**
+     * Returns the total count of items in the list
+     */
     override fun getItemCount(): Int {
         return beacons.size
+    }
+
+    /**
+     * Set items
+     */
+    fun setBeacons(value: Collection<Beacon>) {
+        beacons = value.toList()
     }
 }
