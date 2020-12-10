@@ -3,6 +3,7 @@
     <string name="ibeacon">iBeacon</string>
     <string name="nfc">NFC</string>
     <string name="barcode">Code-barre</string>
+    <string name="ibeacon_placeholder">Scan en cours… \nActivez le bluetooth et accordez la permission de localisation !</string>
     <string name="uuid_label">UUID:</string>
     <string name="major_label">Major:</string>
     <string name="minor_label">Minor:</string>
