@@ -9,10 +9,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import kotlinx.android.synthetic.main.data_fragment.*
 
+// authenticates constants
+const val AUTHENTICATE_LOW = 1;
+const val AUTHENTICATE_MEDIUM = 5;
+const val AUTHENTICATE_MAX = 10;
+
+// this class is responsible to show data if access are suffisant. NFC is done on NfcActivity
 class DataFragment : Fragment() {
-    var AUTHENTICATE_LOW = 1;
-    var AUTHENTICATE_MEDIUM = 5;
-    var AUTHENTICATE_MAX = 10;
+
+
     companion object {
         fun newInstance() = DataFragment()
     }
@@ -37,17 +42,25 @@ class DataFragment : Fragment() {
         minSecurityButton.setOnClickListener {
            if((activity as NfcActivity).getAuthLevel() >= AUTHENTICATE_LOW) {
                Toast.makeText(context,"low auth ok",Toast.LENGTH_SHORT).show()
+           } else {
+               Toast.makeText(context,"low auth NOT ok",Toast.LENGTH_SHORT).show()
            }
         }
         mediumSecurityButton.setOnClickListener {
             if((activity as NfcActivity).getAuthLevel() >= AUTHENTICATE_MEDIUM) {
                 Toast.makeText(context,"medium auth ok",Toast.LENGTH_SHORT).show()
 
+            } else {
+                Toast.makeText(context,"medium auth NOT ok",Toast.LENGTH_SHORT).show()
+
             }
         }
         maxSecurityButton.setOnClickListener {
             if((activity as NfcActivity).getAuthLevel() >= AUTHENTICATE_MAX) {
                 Toast.makeText(context,"max auth ok",Toast.LENGTH_SHORT).show()
+
+            } else {
+                Toast.makeText(context,"max auth NOT ok",Toast.LENGTH_SHORT).show()
 
             }
         }
