@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ibeacon.IBeaconActivity">
 
+    <TextView
+        android:id="@+id/ibeacon_placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ibeacon_placeholder"
+        android:textAlignment="center"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        tools:visibility="visible" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ibeacon_recycler_view"
         android:layout_width="match_parent"
