@@ -93,14 +93,11 @@ class IBeaconActivity : AppCompatActivity(), BeaconConsumer {
 
             // Log
             for (beacon in beacons) {
-                Log.d(
-                    TAG, "UUID: " + beacon.id1
+                Log.d(TAG, "UUID: " + beacon.id1
                             + ", Major: " + beacon.id2
                             + ", Minor: " + beacon.id3
                             + ", RSSI: "  + beacon.rssi
-                            + ", Dist: "  + beacon.distance
-                )
-
+                            + ", Dist: "  + beacon.distance)
             }
         }
 
