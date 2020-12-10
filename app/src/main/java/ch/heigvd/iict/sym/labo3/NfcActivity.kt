@@ -7,12 +7,35 @@
 
 package ch.heigvd.iict.sym.labo3
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 
-class NfcActivity : AppCompatActivity() {
+
+var authLevel = 5;
+
+class NfcActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if(savedInstanceState == null) {
+            supportFragmentManager.beginTransaction().replace(R.id.root_container, NfcLogin()).commit()
+        }
         setContentView(R.layout.activity_nfc)
+
     }
+
+    // swap to the data fragment
+    fun loggedIn() {
+        supportFragmentManager.findFragmentById(R.id.root_container)?.let {
+            supportFragmentManager.beginTransaction().remove(
+                it
+            ).add(R.id.root_container,DataFragment()).commit()
+        };
+
+    }
+
+    fun  getAuthLevel(): Int {
+        return authLevel;
+    }
+
 }
