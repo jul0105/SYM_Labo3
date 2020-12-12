@@ -16,14 +16,7 @@ const val AUTHENTICATE_MAX = 10;
 
 // this class is responsible to show data if access are suffisant. NFC is done on NfcActivity
 class DataFragment : Fragment() {
-
-
-    companion object {
-        fun newInstance() = DataFragment()
-    }
-
-    private lateinit var viewModel: DataViewModel
-
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,8 +26,6 @@ class DataFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(DataViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onStart() {

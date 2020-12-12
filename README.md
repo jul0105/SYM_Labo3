@@ -12,7 +12,47 @@ TODO
 
 ## 2. Balises NFC
 
-TODO
+Login : `admin ` `admin` . 
+
+### Implémentation
+
+L’activité `NfcActivity` pourrait être lancé avec : 
+
+```xml
+<intent-filter>
+    <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+
+    <category android:name="android.intent.category.DEFAULT" />
+
+    <data android:mimeType="text/plain" />
+</intent-filter>
+```
+
+Mais comme précisé dans le laboratoire elle est uniquement notifiée d’un tag `NDEF` lorsqu’elle est à l’écran. 
+
+Pour ce qui est de la 2FA le choix suivant à été fait : 
+
+* Lorsque l’activité NFC est lancée un fragment contenant la page de login apparaît celui-ci notifie grâce a une fonction de l’activité si le login est un succès. Note: les accès sont `admin` et `admin` . Cette page n’est plus affichée après (sauf fermeture complète de l’app). 
+
+* Des le lancement de l’activité NFC l’app peut être notifiée d’un nouveau tag NFC `NDEF`  et uniquement lorsqu’elle est visible à l’écran. Si un tag contenant la chaîne `test` est scannée le niveau d’authentification passe a 15 et est ensuite décrémenté de 1 toutes les deux secondes pendant 20 secondes. Puis repasse à 0. 
+
+Pour pouvoir “lire ” (avoir un `Toast` qui s’affiche avec `xx auth ok`) il faut avoir : 
+
+* au moins 10 pour l’auth max
+* au moins 5 pour l’auth medium 
+* au moins 1 pour l’auth min 
+
+
+
+> 2.4.1 Dans la manipulation ci-dessus, les tags NFC utilisés contiennent 4 valeurs textuelles codées en UTF-8 dans un format de message NDEF. Une personne malveillante ayant accès au porte-clés peut aisément copier les valeurs stockées dans celui-ci et les répliquer sur une autre puce NFC. A partir de l’API Android concernant les tags NFC3, pouvez-vous imaginer une autre approche pour  rendre  plus  compliqué  le  clonage  des  tags  NFC?Existe-il  des  limitations? Voyez-vous d’autres possibilités
+
+NDEF n’a pas de protection contre le clonage. Grâce a l’API Android on pourrait utiliser différents tag. Avec  `getTechList()` on peut identifier la technologie du tag. Et il y’a des tag qui implémentent de la crypto ou d’autre mécanisme d’anti clonage. Notamment de chiffrer la clef sur la carte et qu’elle implémente un mécanisme encryptions et de communication.
+
+  source: https://security.stackexchange.com/questions/63483/how-do-nfc-tags-prevent-copying
+
+> 2.4.2 Est-ce qu’une solution basée sur la vérification de la présence d’un iBeacon sur l’utilisateur, par exemple sous la forme d’un porte-clés serait préférable? Veuillez en discuter.
+
+Non car l’iBeacon à une grande portée donc un utilisateur pourrait s’authentifier avec l’iBeacon d’un autre utilisateur qui se trouverait par exemple dans la même pièce.  Ainsi le “vol” de ses credentials suffit à s’authentifier et le 2FA n’est pas efficace. 
 
 ## 3. Codes-barres
 
