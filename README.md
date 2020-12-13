@@ -12,7 +12,7 @@ Ce laboratoire contient différentes manipulations ayant pour objectif de nous a
 
 Login : `admin ` `admin` . 
 
-### Implémentationlaboratoires
+### Implémentation laboratoires
 
 L’activité `NfcActivity` pourrait être lancé avec : 
 
@@ -100,7 +100,7 @@ Références :
 
 Le iBeacon est un système de positionnement en intérieur développé par Apple. Il offre une grande distance d'émissions allant jusqu'à ~70m alors que le NFC va jusqu'à ~10cm (des iBeacons longue portée peuvent même aller jusqu'à ~450m). Néanmoins, les iBeacons sont très sensibles aux interférences radios et aux obstacles.
 
-Les iBeacons ont également l'avantage de diffuser à plusieurs client en même temps. Cela peut devenir être un problème de sécurité où un attaquant pourrait spoofer un beacon et l'utiliser de façon malveillante.
+Les iBeacons ont également l'avantage de diffuser à plusieurs client en même temps. Cela peut devenir un problème de sécurité où un attaquant pourrait spoofer un beacon et l'utiliser de façon malveillante.
 
 Voici quelques cas d'utilisation pratique :
 
@@ -115,6 +115,8 @@ Voici quelques cas d'utilisation pratique :
 - **Publicité dans un magasin :**
 
   Le but serait d'afficher les nouveaux produits et les soldes présent dans le magasin. Pour cela, le iBeacon est plus adapté car il couvre toute une zone, de la même façon que pour le restaurant.
+
+En conclusion, les iBeacons ne sont pas une alternative complète à NFC. Le choix de la technologie dépend du cas d'utilisation. Les iBeacons sont plus adaptés lorsqu'un faut émettre à plusieurs utilisateurs dans une grande zone et le NFC est plus adapté pour transmettre des informations sensible.
 
 
 
