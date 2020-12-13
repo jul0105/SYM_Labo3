@@ -4,17 +4,15 @@
 > Date : 10.12.2020
 > Classe : B
 
-
-
 ## 1. Introduction
 
-TODO
+Ce laboratoire contient différentes manipulations ayant pour objectif de nous apprendre à travailler avec des données environnementales. Nous allons nous intéressé aux codes barres, balises NFC et aux iBeacons. 
 
 ## 2. Balises NFC
 
 Login : `admin ` `admin` . 
 
-### Implémentation
+### Implémentationlaboratoires
 
 L’activité `NfcActivity` pourrait être lancé avec : 
 
@@ -56,7 +54,34 @@ Non car l’iBeacon à une grande portée donc un utilisateur pourrait s’authe
 
 ## 3. Codes-barres
 
-TODO
+> 3.2.1 Quelle est la quantité maximale de données pouvant être stockée sur un QR-code ? Veuillez expérimenter, avec le générateur conseillé de codes-barres (QR), de générer différentes tailles de QR-codes. Pensez-vous qu’il est envisageable d’utiliser confortablement des QR-codes complexes (par exemple du contenant >500 caractères de texte ou une vCard très complète) ?
+
+La taille maximale pouvant être stockée sur un QR-code dépend du nombre de ses modules. Un module correspond au point noir ou blanc dessinant le QR-code. 
+
+![image-20201213115432097](img/image-20201213115432097.png)
+
+La capacité de stockage du QR-code dépendra également de son niveau de correction. Un niveau élevé contiendra de la redondance dans le code afin d'éviter les erreurs. 
+
+La version 40, qui est la plus grande taille des QR-code, contenant 177 x 177 modules, permet de stocker un maximum de 2 953 octets avec un niveau de redondance faible correspondant à 7%. 
+
+En utilisant le générateur conseillé nous remarquons que cela ne pose pas de problème de créer des QR-code contentant plus de 500 caractères, indépendamment du niveau de correction définit. Cependant, cela pourrait ne pas être confortable à utiliser sachant que les éléments à l'intérieur de code deviennent très petits. Cela implique donc d'avoir une bonne qualité d'impression, un bon appareil photo ainsi que des bonnes conditions de luminosité lors du scan. 
+
+[source](https://www.qrcode.com/)
+
+> 3.2.2 Il existe de très nombreux services sur Internet permettant de générer des QR-codes
+> dynamiques. Veuillez expliquer ce que sont les QR-codes dynamiques. Quels sont les avantages et respectivement les inconvénients à utiliser ceux-ci en comparaison avec des QR-codes statiques. Vous adapterez votre réponse à une utilisation depuis une plateforme mobile.
+
+Les codes QR dynamiques contiennent une URL permettant de rediriger l'utilisateur vers ce liens. 
+
+Cela offre les avantages suivants : 
+
+- Possibilité de modifier le contenu vers lequel le QR-code pointe sans devoir changer le QR code lui même.
+- Les QR dynamiques sont souvent plus faciles à scanner car moins dense. 
+- Possibilité de tenir une statistique sur le nombre de fois qu'un code à été scanné en regardant le nombre de requête sur la page vers laquelle le code redirige. 
+
+Un désavantage que nous pourrions trouver est que cela oblige l'utilisateur à avoir une connexion internet pour être capable d’accéder à l'information. 
+
+[source](https://www.sony.fr/electronics/support/articles/00248593)  
 
 ## 4. Balises iBeacon
 
@@ -95,4 +120,6 @@ Voici quelques cas d'utilisation pratique :
 
 ## 5. Conclusion
 
-TODO
+Ce laboratoire nous a permis de nous familiariser avec les différents moyens de travailler avec les données environnementales. Nous avons pu en apprendre en apprendre d'avantage sur les technologies utilisées par les balises NFC, les iBeacons ainsi que les codes barres. 
+
+Nous n'avons pas rencontrer des difficulté particulière au cours de ce travail.  
