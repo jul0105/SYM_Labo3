@@ -1,3 +1,10 @@
+/**
+ * SYM : Labo 3 - Environnement I. Codes-barres, iBeacons et NFC
+ * Auteurs : Julien Béguin, Robin Cuénoud & Gaëtan Daubresse
+ * Date : 03.12.2020
+ * Classe : B
+ */
+
 package ch.heigvd.iict.sym.labo3
 
 import android.os.Bundle
@@ -14,9 +21,6 @@ import kotlinx.android.synthetic.main.fragment_nfc_login.*
  * create an instance of this fragment.
  */
 class NfcLogin : Fragment() {
-
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +44,7 @@ class NfcLogin : Fragment() {
             }
         }
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of

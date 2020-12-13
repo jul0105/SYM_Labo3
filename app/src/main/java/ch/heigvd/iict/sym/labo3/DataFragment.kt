@@ -1,6 +1,12 @@
+/**
+ * SYM : Labo 3 - Environnement I. Codes-barres, iBeacons et NFC
+ * Auteurs : Julien Béguin, Robin Cuénoud & Gaëtan Daubresse
+ * Date : 03.12.2020
+ * Classe : B
+ */
+
 package ch.heigvd.iict.sym.labo3
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
